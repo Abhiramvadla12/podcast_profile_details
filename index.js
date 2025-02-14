@@ -14,7 +14,7 @@ app.use(cors());
 
 // Define Profile Schema
 const profileSchema = new mongoose.Schema({
-  email: { type: String, required: true, unique: true },
+  username: { type: String, required: true, unique: true },
   country: String,
   gender: String,
   about: String,
