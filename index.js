@@ -31,8 +31,8 @@ const upload = multer({ storage });
 // Route to Update Profile
 app.post("/api/updateProfile", upload.single("file"), async (req, res) => {
   try {
-    const { email, country, gender, about } = req.body;
-    if (!email) return res.status(400).json({ error: "Email is required" });
+    const { username, country, gender, about } = req.body;
+    if (!username) return res.status(400).json({ error: "Email is required" });
 
     const fileData = req.file
       ? { data: req.file.buffer.toString("base64"), contentType: req.file.mimetype }
@@ -42,7 +42,7 @@ app.post("/api/updateProfile", upload.single("file"), async (req, res) => {
     if (fileData) updateData.file = fileData; // Only update image if a new file is uploaded
 
     const profile = await Profile.findOneAndUpdate(
-      { email },
+      { username },
       updateData,
       { new: true, upsert: true }
     );
