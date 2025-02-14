@@ -55,9 +55,9 @@ app.post("/api/updateProfile", upload.single("file"), async (req, res) => {
 });
 
 // Route to Fetch Profile
-app.get("/api/getProfile/:email", async (req, res) => {
+app.get("/api/getProfile/:username", async (req, res) => {
   try {
-    const profile = await Profile.findOne({ email: req.params.email });
+    const profile = await Profile.findOne({ username: req.params.username });
 
     if (!profile) return res.status(404).json({ error: "Profile not found" });
 
